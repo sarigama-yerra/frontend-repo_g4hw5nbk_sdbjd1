@@ -1,28 +1,36 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import PlanetGrid from './components/PlanetGrid'
+import Footer from './components/Footer'
+import PlanetPage from './pages/PlanetPage'
+import Travel from './pages/Travel'
+import Profile from './pages/Profile'
+import Shop from './pages/Shop'
+import About from './pages/About'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Home(){
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div>
+      <Hero />
+      <PlanetGrid />
     </div>
   )
 }
 
-export default App
+export default function App(){
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Navbar />
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="planet/:name" element={<PlanetPage />} />
+        <Route path="travel" element={<Travel />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+      <Footer />
+    </div>
+  )
+}
